@@ -12,7 +12,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                <a href="posts">Posts form</a>
+                <a href="{{ url('posts') }}">Posts form</a>
                 </div>
             </div>
         </div>
