@@ -23,12 +23,13 @@
                           @endforeach
                         </ul>
                       </div>
-                    @endif                  
+                    @endif
                   <form method="post" action="{{ url('posts', $post->id) }}">
                     @csrf
                     @method('patch')
                     <p>
                       <input type="text" name="title" placeholder="title" value="{{ old('title',$post->title)}}">
+                      <input type="hidden" name="user_id" value="{{ $user->id }}">
                     </p>
                     <div>
                       <textarea id="editor" name="body" rows="8" cols="40" placeholder="body">{{ old('body',$post->body)}}</textarea>

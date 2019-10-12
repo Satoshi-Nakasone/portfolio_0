@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Post;
+use App\Http\Requests\postRequest;
 
 class PostsController extends Controller
 {
@@ -15,15 +16,10 @@ class PostsController extends Controller
       return view('posts',['user'=>$user]);
   }
 
-  public function store(Request $request) //記事データ投稿
+  public function store(postRequest $request) //記事データ投稿
   {
-      $request->validate([
-        'title' => 'bail|required|max:255',
-        'body' => 'required|max:10000'
-        ]);
-
       $post = new Post();
-      $post->create($request->all());
+      $post->create($request->validated());
       return redirect()->route('home');
   }
 
@@ -39,16 +35,9 @@ class PostsController extends Controller
       return view('postDetail',['post'=> $post]);
   }
 
-  public function update(Request $request, Post $post) //記事データ編集
+  public function update(postRequest $request, Post $post) //記事データ編集
   {
-    $request->validate([
-      'title' => 'bail|required|max:255',
-      'body' => 'required|max:10000'
-      ]);
-
-      $post->title = $request->title;
-      $post->body = $request->body;
-      $post->save();
+      $post->update($request->validated());
       return redirect()->route('home');
   }
 
