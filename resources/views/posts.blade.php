@@ -15,6 +15,15 @@
                 </div>
                 <div class="card">
                   <div>ログインしてます{{$user->name}}さん</div>
+                  @if ($errors->any())
+                    <div class="alert alert-danger">
+                      <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                      </ul>
+                    </div>
+                  @endif
                   <form method="post" action="{{ url('/posts') }}">
                     @csrf
                     <p>

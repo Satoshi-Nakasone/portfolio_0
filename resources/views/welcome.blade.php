@@ -83,16 +83,18 @@
                 <div class="title m-b-md">
                     Laravel
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+            <div class="content">
+              @forelse($posts as $post)
+              <div class="card" >
+              <a href="{{ url('posts/detail',$post->id)}}">{{ $post->title }}</a>
+                    <p>{{ $post->body }}</p>
+                    <p>{{ $post->created_at }}</p>
+              </div>
+              @empty
+              <div class="card">
+                    <li>記事がありません</li>
+              </div>
+              @endforelse
             </div>
         </div>
     </body>

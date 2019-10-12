@@ -12,18 +12,19 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                <a href="{{ url('posts') }}">Posts form</a>
+                <a href="{{ url('posts') }}">新規記事投稿</a>
                 </div>
             </div>
 
             <div class="card">
                 ログインしてます{{$user->name}}さん
                 @forelse($posts as $post)
-                <div class="card">
+                <div class="card" >
                 <ul>
                       <li>{{ $post->title }}</li>
                       <li>{{ $post->body }}</li>
                       <li>{{ $post->created_at }}</li>
+                      <a href="{{ url('posts/edit',$post->id)}}">編集</a>
                 </ul>
                 </div>
                 @empty

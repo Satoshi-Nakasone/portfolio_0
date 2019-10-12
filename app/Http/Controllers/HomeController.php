@@ -24,11 +24,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index() //ログイン後メイン画面へ移動
     {
         $user = Auth::user();
         $user_id = $user->id;
-        //$posts = Post::all();
         $posts = DB::table('posts')->where('user_id', '=', $user_id)->get();
         return view('home',['posts'=> $posts,'user' => $user]);
     }
