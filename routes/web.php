@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 //記事投稿フォームへ移動
 Route::get('posts', 'PostsController@index');
 //記事データ投稿

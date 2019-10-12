@@ -15,6 +15,23 @@
                 <a href="{{ url('posts') }}">Posts form</a>
                 </div>
             </div>
+
+            <div class="card">
+                ログインしてます{{$user->name}}さん
+                @forelse($posts as $post)
+                <div class="card">
+                <ul>
+                      <li>{{ $post->title }}</li>
+                      <li>{{ $post->body }}</li>
+                      <li>{{ $post->created_at }}</li>
+                </ul>
+                </div>
+                @empty
+                <div class="card">
+                      <li>記事がありません</li>
+                </div>
+                @endforelse
+            </div>
         </div>
     </div>
 </div>
