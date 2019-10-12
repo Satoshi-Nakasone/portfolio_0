@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Post;
+use App\Comment;
 use App\Http\Requests\postRequest;
+
 
 class PostsController extends Controller
 {
@@ -31,8 +33,10 @@ class PostsController extends Controller
 
   public function detail(Post $post)  //議事詳細画面移動
   {
-      //$user = Auth::user();
-      return view('postDetail',['post'=> $post]);
+      $post_id = $post->id;
+      $comments = DB::table('comments')->where('post_id', '=', $post_id)->get();
+      return view('postDetail',['post'=> $post , 'comments' => $comments]);
+      //return view('postDetail',['post'=> $post]);
   }
 
   public function update(postRequest $request, Post $post) //記事データ編集

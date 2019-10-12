@@ -34,3 +34,5 @@ Route::post('posts','PostsController@store');
 Route::patch('posts/{post}','PostsController@update');
 //記事削除
 Route::delete('posts/delete/{post}','PostsController@delete');
+//コメント投稿
+Route::post('posts/comment/{posts}','CommentController@store');

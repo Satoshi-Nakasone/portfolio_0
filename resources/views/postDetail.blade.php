@@ -19,6 +19,29 @@
                       <p>{{ $post->body }}</p>
                       <p>{{ $post->created_at }}</p>
                 </div>
+                <div class="card" >
+                  @forelse($comments as $comment)
+                  <div class="card" >
+                  <ul>
+                        <li>{{ $comment->body }}</li>
+                        <a href="{{ url('posts/edit',$post->id)}}">編集</a>
+                  </ul>
+                  </div>
+                  @empty
+                  <div class="card">
+                        <li>コメントがありません</li>
+                  </div>
+                  @endforelse
+                  <h1>コメントを投稿する</h1>
+                  <form method="post" action="{{ url('/posts/comment/{post}') }}">
+                    @csrf
+                    <div>
+                      <input type="hidden" name="post_id" value="{{ $post->id }}">
+                      <textarea  name="body" rows="8" cols="40"></textarea>
+                    </div>
+                    <input type="submit" value="送信">
+                  </form>
+                </div>
         </div>
     </div>
 </div>
