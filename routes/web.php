@@ -10,15 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Route::get('/', 'HomeController@start');
 Route::get('/', function () {
   $posts = DB::table('posts')->get();
   return view('welcome',['posts'=> $posts]);
-    //return view('welcome');
 });
 
 Auth::routes();
-
 //ログイン後メイン画面へ移動
 Route::get('/home', 'HomeController@index')->name('home');
 

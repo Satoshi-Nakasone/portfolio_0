@@ -24,6 +24,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+     public function start() //welcome
+     {
+       $posts = DB::table('posts')->get();
+       return view('welcome',['posts'=> $posts]);
+     }
+
     public function index() //ログイン後メイン画面へ移動
     {
         $user = Auth::user();
