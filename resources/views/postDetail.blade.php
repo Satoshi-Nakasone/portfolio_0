@@ -15,16 +15,17 @@
                 </div>
             </div>
                 <div class="card" >
-                  <h1>{{ $post->title }}</h1>
-                      <p>{{ $post->body }}</p>
-                      <p>{{ $post->created_at }}</p>
+                  <p>タイトル：{{ $post->title }}</p>
+                  <p>本文：{{ $post->body }}</p>
+                  <p>投稿日：{{ $post->created_at }}</p>
                 </div>
                 <div class="card" >
+                  <p>コメント</p>
                   @forelse($comments as $comment)
                   <div class="card" >
                   <ul>
                         <li>{{ $comment->body }}</li>
-                        <a href="{{ url('posts/edit',$post->id)}}">編集</a>
+                        <a href="{{ url('posts/comment/edit',$comment->id)}}">編集</a>
                   </ul>
                   </div>
                   @empty
@@ -32,12 +33,12 @@
                         <li>コメントがありません</li>
                   </div>
                   @endforelse
-                  <h1>コメントを投稿する</h1>
+                  <p>コメントを投稿する</p>
                   <form method="post" action="{{ url('/posts/comment/{post}') }}">
                     @csrf
                     <div>
                       <input type="hidden" name="post_id" value="{{ $post->id }}">
-                      <textarea  name="body" rows="8" cols="40"></textarea>
+                      <textarea  name="body" rows="2" cols="60"></textarea>
                     </div>
                     <input type="submit" value="送信">
                   </form>
