@@ -60,11 +60,25 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
+                                <div class="nav-item dropdown">
+                                @if (Route::has('login'))
+                                    <div class="content">
+                                        @auth
+                                            <a href="{{ url('/home') }}">Home</a>
+                                        @else
+                                            <a href="{{ route('login') }}">Login</a>
+
+                                            @if (Route::has('register'))
+                                                <a href="{{ route('register') }}">Register</a>
+                                            @endif
+                                        @endauth
+                                    </div>
+                                @endif
+                              </div>
                             </li>
                         @endguest
                     </ul>

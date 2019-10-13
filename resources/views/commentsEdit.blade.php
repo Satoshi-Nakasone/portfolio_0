@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Posts Edit</div>
+                <div class="card-header">Comment  Edit</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -27,7 +27,7 @@
                     @csrf
                     @method('patch')
                     <p>
-                      <input type="hidden" name="user_id" value="{{ $user->id }}">
+                      <input type="hidden" name="user_id" value="{{ $comment->user_id }}">
                       <input type="hidden" name="post_id" value="{{ $comment->post_id }}">
                     </p>
                     <div>

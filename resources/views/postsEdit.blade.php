@@ -36,7 +36,6 @@
                     </div>
                     <input type="submit" value="編集">
                   </form>
-
                   <form method="post" action="{{ url('posts/delete', $post->id) }}">
                     @csrf
                     @method('delete')

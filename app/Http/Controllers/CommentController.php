@@ -14,10 +14,10 @@ class CommentController extends Controller
   {
       $comment = new Comment();
       $comment->create($request->validated());
-      return redirect('/home');
+      return redirect()->route('detail', [$request->post_id]);
   }
 
-  public function edit(Comment $comment)  //記事編集画面移動
+  public function edit(Comment $comment)  //コメント編集画面移動
   {
       $user = Auth::user();
       return view('commentsEdit',['comment'=> $comment , 'user' => $user]);
@@ -26,7 +26,7 @@ class CommentController extends Controller
   public function update(commentRequest $request , Comment $comment) //コメントデータ編集
   {
       $comment->update($request->validated());
-      return redirect()->route('home');
+      return redirect()->route('detail', [$request->post_id]);
   }
 
   public function delete(Comment $comment) //コメントデータ削除

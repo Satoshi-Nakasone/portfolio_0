@@ -25,6 +25,7 @@ class commentRequest extends FormRequest
     {
         return [
           'post_id' => ['required'],
+          'user_id' => ['required'],
           'body' => ['required' , 'min:1']
         ];
     }

@@ -28,15 +28,15 @@ class PostsController extends Controller
   public function edit(Post $post)  //記事編集画面移動
   {
       $user = Auth::user();
-      return view('postsEdit',['post'=> $post,'user' => $user]);
+      return view('postsEdit',['post'=> $post ,'user' => $user]);
   }
 
   public function detail(Post $post)  //議事詳細画面移動
   {
+      $user = Auth::user();
       $post_id = $post->id;
       $comments = DB::table('comments')->where('post_id', '=', $post_id)->get();
-      return view('postDetail',['post'=> $post , 'comments' => $comments]);
-      //return view('postDetail',['post'=> $post]);
+      return view('postDetail',['post'=> $post , 'comments' => $comments ,'user' => $user]);
   }
 
   public function update(postRequest $request, Post $post) //記事データ編集

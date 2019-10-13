@@ -25,7 +25,9 @@
                   <div class="card" >
                   <ul>
                         <li>{{ $comment->body }}</li>
+                        @if($comment->user_id === $user->id)
                         <a href="{{ url('posts/comment/edit',$comment->id)}}">編集</a>
+                        @endif
                   </ul>
                   </div>
                   @empty
@@ -38,6 +40,7 @@
                     @csrf
                     <div>
                       <input type="hidden" name="post_id" value="{{ $post->id }}">
+                      <input type="hidden" name="user_id" value="{{ $user->id }}">
                       <textarea  name="body" rows="2" cols="60"></textarea>
                     </div>
                     <input type="submit" value="送信">

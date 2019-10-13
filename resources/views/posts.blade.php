@@ -13,7 +13,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="card">
+                <div class="card-body">
                   <div>ログインしてます{{$user->name}}さん</div>
                   @if ($errors->any())
                     <div class="alert alert-danger">
@@ -24,17 +24,19 @@
                       </ul>
                     </div>
                   @endif
+                  <div class="form-group row">
                   <form method="post" action="{{ url('/posts') }}">
                     @csrf
-                    <p>
-                      <input type="text" name="title" placeholder="title">
+                    <p class="form-group">
+                      <input type="text" name="title" placeholder="title" class="form-control">
                       <input type="hidden" name="user_id" value="{{ $user->id }}">
                     </p>
-                    <div>
-                      <textarea id="editor" name="body" rows="8" cols="40"></textarea>
+                    <div class="form-group">
+                      <textarea id="editor" name="body" rows="8" cols="40" class="form-control"></textarea>
                     </div>
-                    <input type="submit" value="送信">
+                    <input type="submit" value="送信" class="btn btn-primary">
                   </form>
+                </div>
                 </div>
             </div>
         </div>
