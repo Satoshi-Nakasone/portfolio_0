@@ -14,6 +14,14 @@ class HomeController extends Controller
      *
      * @return void
      */
+     // public function start() //welcome
+     // {
+     //   $posts = DB::table('posts')->get();
+     //   $posts = DB::table('posts')->paginate(4);
+     //   return view('welcome',['posts'=> $posts]);
+     // }
+
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -24,17 +32,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-     public function start() //welcome
-     {
-       $posts = DB::table('posts')->get();
-       return view('welcome',['posts'=> $posts]);
-     }
 
-    public function index() //ログイン後メイン画面へ移動
-    {
+     public function index() //ログイン後メイン画面へ移動
+     {
         $user = Auth::user();
         $user_id = $user->id;
         $posts = DB::table('posts')->where('user_id', '=', $user_id)->get();
         return view('home',['posts'=> $posts,'user' => $user]);
-    }
+      }
 }

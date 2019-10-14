@@ -11,9 +11,12 @@
 |
 */
 Route::get('/', function () {
-  $posts = DB::table('posts')->get();
+  //$posts = DB::table('posts')->get();
+  $posts = DB::table('posts')->paginate(4);
   return view('welcome',['posts'=> $posts]);
 });
+
+// Route::get('/', 'HomeController@start');
 
 Auth::routes();
 //ログイン後メイン画面へ移動
