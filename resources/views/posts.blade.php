@@ -32,7 +32,7 @@
                       <input type="hidden" name="user_id" value="{{ $user->id }}">
                     </p>
                     <div class="form-group">
-                      <textarea id="editor" name="body" rows="8" cols="40" class="form-control"></textarea>
+                      <textarea id="editor" name="body" rows="8" cols="40" class="form-control" ></textarea>
                     </div>
                     <input type="submit" value="送信" class="btn btn-primary">
                   </form>

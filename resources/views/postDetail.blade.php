@@ -14,6 +14,13 @@
                     @endif
                 </div>
             </div>
+            <div id="content"></div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+document.getElementById('content').innerHTML =
+  marked('## Marked in the browserRendered by **marked**.');
+</script>
+</body>
                 <div class="card" >
                   <p>タイトル：{{ $post->title }}</p>
                   <p>本文：{{ $post->body }}</p>

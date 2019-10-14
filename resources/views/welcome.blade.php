@@ -19,7 +19,11 @@
                     <div class="item-box-blog-body bg-secondary">
                       <!--Heading-->
                       <div class="item-box-blog-heading bg-success">
-                        <a href="{{ url('posts/detail',$post->id)}}" tabindex="0">
+                          @if(Auth::check())
+                          <a href="{{ url('posts/detail',$post->id)}}" tabindex="0">
+                          @else
+                          <a href="{{ url('posts/guestdetail',$post->id)}}" tabindex="0">
+                          @endif
                           <h5>{{ $post->title}}</h5>
                         </a>
                       </div>

@@ -14,18 +14,24 @@ class HomeController extends Controller
      *
      * @return void
      */
-     // public function start() //welcome
-     // {
-     //   $posts = DB::table('posts')->get();
-     //   $posts = DB::table('posts')->paginate(4);
-     //   return view('welcome',['posts'=> $posts]);
-     // }
+     public function start() //welcome
+     {
+       $posts = DB::table('posts')->get();
+       $posts = DB::table('posts')->paginate(4);
+       return view('welcome',['posts'=> $posts]);
+     }
 
+     public function detail(Post $post)  //Guest用記事詳細画面移動
+     {
+         $post_id = $post->id;
+         $comments = DB::table('comments')->where('post_id', '=', $post_id)->get();
+         return view('postGuestDetail',['post'=> $post , 'comments' => $comments]);
+     }
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.

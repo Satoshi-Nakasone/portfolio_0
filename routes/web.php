@@ -10,18 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-  //$posts = DB::table('posts')->get();
-  $posts = DB::table('posts')->paginate(4);
-  return view('welcome',['posts'=> $posts]);
-});
 
-// Route::get('/', 'HomeController@start');
-
+Route::get('/', 'HomeController@start');
 Auth::routes();
+
+//Guest用記事詳細画面移動
+Route::get('posts/guestdetail/{post}', 'HomeController@detail');
 //ログイン後メイン画面へ移動
 Route::get('/home', 'HomeController@index')->name('home');
 
+//要認証ルーティング
+Route::group(['middleware' => 'auth'], function() {
 //記事投稿フォームへ移動
 Route::get('posts', 'PostsController@index');
 //記事編集画面移動
@@ -42,3 +41,5 @@ Route::get('posts/comment/edit/{comment}','CommentController@edit');
 Route::patch('comment/{comment}','CommentController@update');
 //コメント削除
 Route::delete('comment/delete/{comment}','CommentController@delete');
+
+});

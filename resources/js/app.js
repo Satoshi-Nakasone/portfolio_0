@@ -3,9 +3,10 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+//require()は他のjavascriptのファイルで定義されているモジュールを読み込むためのNode.jsの関数
+require('./bootstrap');//CSSフレームワークのBootstrapのこと？とも思いますが、ここではそのBootstrapではなく、単に同じディレクトリにある、bootstrap.jsをモジュールとして読み込んで実行する https://www.larajapan.com/tag/laravel-mix/
 
-require('./bootstrap');
-
+//グローバルオブジェクト
 //window.Vue = require('vue');
 
 //var simplemde = require('simplemde');
@@ -17,6 +18,9 @@ if (element) {
   const simplemde = new SimpleMDE({ element: element })
 }
 
+import marked from 'marked';
+import hljs from 'highlight.js';
+
   /*
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -27,7 +31,7 @@ if (element) {
 
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
-
+//ケバブケース例<my-component-name>
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
